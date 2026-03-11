@@ -1,0 +1,16 @@
+[project]
+name = "web-search"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "langchain>=1.2.11",
+    "langchain-openai>=1.1.11",
+    "langchain-perplexity>=1.1.0",
+    "langchain-tavily>=0.2.17",
+    "langgraph>=1.1.0",
+    "langsmith>=0.7.16",
+    "python-dotenv>=1.2.2",
+    "tavily>=1.1.0",
+]
