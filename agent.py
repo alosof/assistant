@@ -1,23 +1,16 @@
-import sys
 from datetime import date
 
 from dotenv import load_dotenv
 from langchain.agents import create_agent
 from langchain_tavily import TavilySearch
-from langgraph.checkpoint.memory import MemorySaver
-
-from display import BOLD, DIM, RESET, BLUE, Spinner, GREEN
 
 load_dotenv()
 
-# 1. Initialize the Tool
-tavily_search_tool = TavilySearch(max_results=10)
 
-# 2. Setup Memory (Checkpointer) for multi-round conversations
-memory = MemorySaver()
+def build_agent():
+    tavily_search_tool = TavilySearch(max_results=10)
 
-# 3. System prompt
-SYSTEM_PROMPT = f"""\
+    system_prompt = f"""\
 # RÔLE
 
 Tu es un assistant juridique expert en droit français, doté d'une rigueur comparable \
@@ -163,57 +156,8 @@ mais accessible. Utilise le vocabulaire juridique approprié en l'expliquant si 
 nécessaire pour un non-juriste.
 """
 
-# 4. Create the Agent
-agent = create_agent(
-    model="openai:gpt-5.4",
-    tools=[tavily_search_tool],
-    system_prompt=SYSTEM_PROMPT,
-    checkpointer=memory,
-)
-
-# 4. Define the thread ID for this specific conversation
-config = {"configurable": {"thread_id": "my_thread"}}
-
-print(f"{DIM}Posez vos questions. Tapez 'quit', 'exit' ou 'q' pour quitter.{RESET}\n")
-
-# 5. The Interactive Loop
-while True:
-    try:
-        user_input = input(f"\n{BOLD}{BLUE}Vous :{RESET} ")
-    except (KeyboardInterrupt, EOFError):
-        print("\nAu revoir !")
-        sys.exit()
-
-    if user_input.lower() in ["quit", "exit", "q"]:
-        print("Au revoir !")
-        break
-
-    print()
-    spinner = Spinner()
-    spinner.start()
-    text_started = False
-
-    for chunk, metadata in agent.stream(
-        {"messages": [("user", user_input)]},
-        config=config,
-        stream_mode="messages"
-    ):
-        if chunk.type == "AIMessageChunk" and not chunk.tool_call_chunks:
-            content = ""
-            if isinstance(chunk.content, str):
-                content = chunk.content
-            elif isinstance(chunk.content, list):
-                for part in chunk.content:
-                    if isinstance(part, dict) and part.get("type") == "text":
-                        content += part.get("text", "")
-
-            if content:
-                if not text_started:
-                    spinner.stop()
-                    print(f"\n{BOLD}{GREEN}Assistant :{RESET} ", end="", flush=True)
-                    text_started = True
-                print(content, end="", flush=True)
-
-    if not text_started:
-        spinner.stop()
-    print()  # newline after response
+    return create_agent(
+        model="openai:gpt-5.4",
+        tools=[tavily_search_tool],
+        system_prompt=system_prompt,
+    )
