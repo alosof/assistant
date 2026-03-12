@@ -166,6 +166,12 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/64/ca/218fa25002a332c0aa149ba18ffc0543175998b1f65de63f6d106689a345/anthropic-0.84.0-py3-none-any.whl", hash = "sha256:861c4c50f91ca45f942e091d83b60530ad6d4f98733bfe648065364da05d29e7", size = 455156, upload-time = "2026-02-25T05:22:40.468Z" },
 ]
 
+[package.optional-dependencies]
+bedrock = [
+    { name = "boto3" },
+    { name = "botocore" },
+]
+
 [[package]]
 name = "anyio"
 version = "4.12.1"
@@ -273,6 +279,34 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/21/28/9b3f50ce0e048515135495f198351908d99540d69bfdc8c1d15b73dc55ce/blinker-1.9.0.tar.gz", hash = "sha256:b4ce2265a7abece45e7cc896e98dbebe6cead56bcf805a3d23136d145f5445bf", size = 22460, upload-time = "2024-11-08T17:25:47.436Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/10/cb/f2ad4230dc2eb1a74edf38f1a38b9b52277f75bef262d8908e60d957e13c/blinker-1.9.0-py3-none-any.whl", hash = "sha256:ba0efaa9080b619ff2f3459d1d500c57bddea4a6b424b60a91141db6fd2f08bc", size = 8458, upload-time = "2024-11-08T17:25:46.184Z" },
+]
+
+[[package]]
+name = "boto3"
+version = "1.42.66"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "botocore" },
+    { name = "jmespath" },
+    { name = "s3transfer" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0a/2e/67206daa5acb6053157ae5241421713a84ed6015d33d0781985bd5558898/boto3-1.42.66.tar.gz", hash = "sha256:3bec5300fb2429c3be8e8961fdb1f11e85195922c8a980022332c20af05616d5", size = 112805, upload-time = "2026-03-11T19:58:19.17Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4c/09/83224363c3f5e468e298e48beb577ffe8cb51f18c2116bc1ecf404796e60/boto3-1.42.66-py3-none-any.whl", hash = "sha256:7c6c60dc5500e8a2967a306372a5fdb4c7f9a5b8adc5eb9aa2ebb5081c51ff47", size = 140557, upload-time = "2026-03-11T19:58:17.61Z" },
+]
+
+[[package]]
+name = "botocore"
+version = "1.42.66"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "jmespath" },
+    { name = "python-dateutil" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/77/ef/1c8f89da69b0c3742120e19a6ea72ec46ac0596294466924fdd4cf0f36bb/botocore-1.42.66.tar.gz", hash = "sha256:39756a21142b646de552d798dde2105759b0b8fa0d881a34c26d15bd4c9448fa", size = 14977446, upload-time = "2026-03-11T19:58:07.714Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/13/6f/7b45ed2ca300c1ad38ecfc82c1368546d4a90512d9dff589ebbd182a7317/botocore-1.42.66-py3-none-any.whl", hash = "sha256:ac48af1ab527dfa08c4617c387413ca56a7f87780d7bfc1da34ef847a59219a5", size = 14653886, upload-time = "2026-03-11T19:58:04.922Z" },
 ]
 
 [[package]]
@@ -955,6 +989,15 @@ wheels = [
 ]
 
 [[package]]
+name = "jmespath"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d3/59/322338183ecda247fb5d1763a6cbe46eff7222eaeebafd9fa65d4bf5cb11/jmespath-1.1.0.tar.gz", hash = "sha256:472c87d80f36026ae83c6ddd0f1d05d4e510134ed462851fd5f754c8c3cbb88d", size = 27377, upload-time = "2026-01-22T16:35:26.279Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/14/2f/967ba146e6d58cf6a652da73885f52fc68001525b4197effc174321d70b4/jmespath-1.1.0-py3-none-any.whl", hash = "sha256:a5663118de4908c91729bea0acadca56526eb2698e83de10cd116ae0f4e97c64", size = 20419, upload-time = "2026-01-22T16:35:24.919Z" },
+]
+
+[[package]]
 name = "jsonpatch"
 version = "1.33"
 source = { registry = "https://pypi.org/simple" }
@@ -1014,6 +1057,41 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/8a/ed/990ec469ee2c4876adc367a1bb10143132a54a6fd9757269d2e440d65b37/langchain-1.2.11.tar.gz", hash = "sha256:1b0f680de88c178898a69f9814025729110fc68365b2c33cd2ba978114d5fc0a", size = 566207, upload-time = "2026-03-10T19:46:14.519Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/10/24/c9fd2d6f31ef7444e163aa9295c2c661892c8b2b683b4b6dd190ffd29a2f/langchain-1.2.11-py3-none-any.whl", hash = "sha256:ccc5d23e2568efa6e3cb2dde268a267d7f090bdad47d7e1ee5f0c9769e8cb7b9", size = 112136, upload-time = "2026-03-10T19:46:12.433Z" },
+]
+
+[[package]]
+name = "langchain-anthropic"
+version = "1.3.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anthropic" },
+    { name = "langchain-core" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/30/4e/7c1ffac126f5e62b0b9066f331f91ae69361e73476fd3ca1b19f8d8a3cc3/langchain_anthropic-1.3.4.tar.gz", hash = "sha256:000ed4c2d6fb8842b4ffeed22a74a3e84f9e9bcb63638e4abbb4a1d8ffa07211", size = 671858, upload-time = "2026-02-24T13:54:01.738Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9b/cf/b7c7b7270efbb3db2edbf14b09ba9110a41628f3a85a11cae9527a35641c/langchain_anthropic-1.3.4-py3-none-any.whl", hash = "sha256:cd112dcc8049aef09f58b3c4338b2c9db5ee98105e08664954a4e40d8bf120b9", size = 47454, upload-time = "2026-02-24T13:54:00.53Z" },
+]
+
+[[package]]
+name = "langchain-aws"
+version = "1.4.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "boto3" },
+    { name = "langchain-core" },
+    { name = "numpy" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/31/1d/9bc0e523b8d13dcaf301cdd85ae05ce0687fdbeff2000b50346410b260d0/langchain_aws-1.4.0.tar.gz", hash = "sha256:370dcba824d68af96372a1c979c94f8d7062d268615b5395d80d1562a05fca37", size = 435753, upload-time = "2026-03-09T20:02:54.472Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/cc/5d/8a52c067137c26db4c0ff6c0847d75cc5f34c42d21dfb031f27fa705fd52/langchain_aws-1.4.0-py3-none-any.whl", hash = "sha256:68e07276cd85bb45dc4415e417e04fbe1c76c3cf029ddd6d96e2fa981dd29cc1", size = 174854, upload-time = "2026-03-09T20:02:53.381Z" },
+]
+
+[package.optional-dependencies]
+anthropic = [
+    { name = "anthropic", extra = ["bedrock"] },
+    { name = "langchain-anthropic" },
 ]
 
 [[package]]
@@ -2899,6 +2977,18 @@ wheels = [
 ]
 
 [[package]]
+name = "s3transfer"
+version = "0.16.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "botocore" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/05/04/74127fc843314818edfa81b5540e26dd537353b123a4edc563109d8f17dd/s3transfer-0.16.0.tar.gz", hash = "sha256:8e990f13268025792229cd52fa10cb7163744bf56e719e0b9cb925ab79abf920", size = 153827, upload-time = "2025-12-01T02:30:59.114Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/fc/51/727abb13f44c1fcf6d145979e1535a35794db0f6e450a0cb46aa24732fe2/s3transfer-0.16.0-py3-none-any.whl", hash = "sha256:18e25d66fed509e3868dc1572b3f427ff947dd2c56f844a5bf09481ad3f3b2fe", size = 86830, upload-time = "2025-12-01T02:30:57.729Z" },
+]
+
+[[package]]
 name = "shellingham"
 version = "1.5.4"
 source = { registry = "https://pypi.org/simple" }
@@ -3450,6 +3540,7 @@ dependencies = [
     { name = "chainlit" },
     { name = "greenlet" },
     { name = "langchain" },
+    { name = "langchain-aws", extra = ["anthropic"] },
     { name = "langchain-openai" },
     { name = "langchain-perplexity" },
     { name = "langchain-tavily" },
@@ -3468,6 +3559,7 @@ requires-dist = [
     { name = "chainlit", specifier = ">=2.10.0" },
     { name = "greenlet", specifier = ">=3.3.2" },
     { name = "langchain", specifier = ">=1.2.11" },
+    { name = "langchain-aws", extras = ["anthropic"], specifier = ">=1.4.0" },
     { name = "langchain-openai", specifier = ">=1.1.11" },
     { name = "langchain-perplexity", specifier = ">=1.1.0" },
     { name = "langchain-tavily", specifier = ">=0.2.17" },

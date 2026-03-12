@@ -158,6 +158,7 @@ nécessaire pour un non-juriste.
 
     return create_agent(
         model="openai:gpt-5.4",
+        #model="anthropic_bedrock:eu.anthropic.claude-opus-4-6-v1",
         tools=[tavily_search_tool],
         system_prompt=system_prompt,
     )
