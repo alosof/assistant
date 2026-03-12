@@ -2,6 +2,7 @@ import sqlite3
 from pathlib import Path
 
 import chainlit as cl
+import pymupdf
 from chainlit.data.sql_alchemy import SQLAlchemyDataLayer
 from chainlit.types import ThreadDict
 
@@ -110,6 +111,16 @@ def auth_callback(username: str, password: str):
 agent = build_agent()
 
 
+# --- Document extraction ---
+
+
+def extract_text(path: str, mime: str) -> str:
+    if mime == "application/pdf":
+        doc = pymupdf.open(path)
+        return "\n".join(page.get_text() for page in doc)
+    return Path(path).read_text(encoding="utf-8", errors="ignore")
+
+
 # --- Chat lifecycle ---
 
 
@@ -133,7 +144,18 @@ async def on_chat_resume(thread: ThreadDict):
 @cl.on_message
 async def on_message(message: cl.Message):
     message_history = cl.user_session.get("message_history", [])
-    message_history.append(("user", message.content))
+
+    file_texts = []
+    for element in message.elements:
+        if element.path:
+            text = extract_text(element.path, element.mime)
+            file_texts.append(f"--- Document : {element.name} ---\n{text}")
+
+    user_content = message.content
+    if file_texts:
+        user_content += "\n\n" + "\n\n".join(file_texts)
+
+    message_history.append(("user", user_content))
 
     response = cl.Message(content="")
     response.parent_id = None
