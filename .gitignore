@@ -12,3 +12,4 @@ wheels/
 .idea
 conversations.json
 chainlit.db
+.access_token

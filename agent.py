@@ -4,12 +4,12 @@ from dotenv import load_dotenv
 from langchain.agents import create_agent
 from langchain_tavily import TavilySearch
 
+from tools.doctrine import doctrine_search_tool
+
 load_dotenv()
 
 
 def build_agent():
-    tavily_search_tool = TavilySearch(max_results=10)
-
     system_prompt = f"""\
 # RÔLE
 
@@ -156,9 +156,14 @@ mais accessible. Utilise le vocabulaire juridique approprié en l'expliquant si 
 nécessaire pour un non-juriste.
 """
 
+    tavily_search_tool = TavilySearch(max_results=10)
+
     return create_agent(
         model="openai:gpt-5.4",
-        #model="anthropic_bedrock:eu.anthropic.claude-opus-4-6-v1",
-        tools=[tavily_search_tool],
+        # model="anthropic_bedrock:eu.anthropic.claude-opus-4-6-v1",
+        tools=[
+            tavily_search_tool,
+            doctrine_search_tool
+        ],
         system_prompt=system_prompt,
     )
