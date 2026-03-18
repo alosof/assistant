@@ -7,7 +7,7 @@ WORKDIR /app
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
 
-COPY agent.py chainlit_app.py ./
+COPY tools agent.py chainlit_app.py ./
 COPY .chainlit .chainlit
 
 RUN uv sync --frozen --no-dev

@@ -163,7 +163,7 @@ nécessaire pour un non-juriste.
         # model="anthropic_bedrock:eu.anthropic.claude-opus-4-6-v1",
         tools=[
             tavily_search_tool,
-            doctrine_search_tool
+            # doctrine_search_tool
         ],
         system_prompt=system_prompt,
     )
